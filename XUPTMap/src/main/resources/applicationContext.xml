@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="dataSouce" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="password" value="159630235z"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/mydb?serverTimezone=GMT"></property>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="username" value="root"></property>
+    </bean>
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSouce"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mapper"></property>
+        <property name="sqlSessionFactoryBeanName" value="factory"></property>
+    </bean>
+
+    <bean id="ServiceImpl" class="com.service.impl.ServiceImpl">
+        <property name="pathMapper" ref="pathMapper"></property>
+        <property name="placeMapper" ref="placeMapper"></property>
+    </bean>
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PathMapper">
+    <insert id="insPath">
+        insert into path values(default ,#{param1}, #{param2}, #{param3})
+    </insert>
+    <delete id="delete2">
+        delete from path where start=#{param1} or end=#{param1}
+    </delete>
+    <delete id="delete" >
+        delete from path where start=#{param1} and end=#{param2}
+    </delete>
+    <select id="selAll" resultType="com.pojo.Path">
+        select * from path
+    </select>
+    <select id="selPath" resultType="com.pojo.Path">
+        select * from path where start = #{param1} or end = #{param1}
+    </select>
+    <select id="selByStart" resultType="com.pojo.Path">
+        select * from path where start=#{0} or end=#{0} order by start
+    </select>
+</mapper>

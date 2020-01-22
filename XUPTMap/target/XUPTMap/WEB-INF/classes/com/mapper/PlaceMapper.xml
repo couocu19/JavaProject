@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PlaceMapper">
+    <insert id="insPlace">
+        insert into place values(#{param1}, #{param2})
+    </insert>
+    <delete id="delete">
+        delete from place where place.name = #{param1}
+    </delete>
+    <select id="SelList" resultType="com.pojo.Place">
+        select * from Place
+    </select>
+    <select id="selAll" resultType="com.pojo.Place">
+        select * from place limit #{param1},#{param2}
+    </select>
+    <select id="selCount" resultType="int">
+        select count(*) from place
+    </select>
+    <select id="selByName" resultType="com.pojo.Place">
+        select * from place where name=#{0}
+    </select>
+</mapper>
